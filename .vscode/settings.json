@@ -1,91 +1,107 @@
-// {
-//     "latex-workshop.latex.recipes": [{
-//     "name": "xelatex",
-//     "tools": [
-//         "xelatex"
-//     ]
-//   }, 
-//   {
-//     "name": "latexmk",
-//     "tools": [
-//         "latexmk"
-//     ]
-//   },
-
-//   {
-//     "name": "pdflatex -> bibtex -> pdflatex*2",
-//     "tools": [
-//         "pdflatex",
-//         "bibtex",
-//         "pdflatex",
-//         "pdflatex"
-//     ]
-//   },
-//   {
-//     "name": "xelatex -> bibtex -> xelatex*2",
-//     "tools": [
-//     "xelatex",
-//     "bibtex",
-//     "xelatex",
-//     "xelatex"
-//     ]
-//     }
-//   ],
-//   "latex-workshop.latex.tools": [{
-//   "name": "latexmk",
-//   "command": "latexmk",
-//   "args": [
-//     "-synctex=1",
-//     "-interaction=nonstopmode",
-//     "-file-line-error",
-//     "-pdf",
-//     "%DOCFILE%"
-//   ]
-//   }, {
-//   "name": "xelatex",
-//   "command": "xelatex",
-//   "args": [
-//     "-synctex=1",
-//     "-interaction=nonstopmode",
-//     "-file-line-error",
-//     "%DOCFILE%"
-//   ]
-//   }, {
-//   "name": "pdflatex",
-//   "command": "pdflatex",
-//   "args": [
-//     "-synctex=1",
-//     "-interaction=nonstopmode",
-//     "-file-line-error",
-//     "%DOCFILE%"
-//   ]
-//   }, {
-//   "name": "bibtex",
-//   "command": "bibtex",
-//   "args": [
-//     "%DOCFILE%"
-//   ]
-//   }],
-//   "latex-workshop.view.pdf.viewer": "tab",
-//   "latex-workshop.latex.clean.fileTypes": [
-//   "*.aux",
-//   "*.bbl",
-//   "*.blg",
-//   "*.idx",
-//   "*.ind",
-//   "*.lof",
-//   "*.lot",
-//   "*.out",
-//   "*.toc",
-//   "*.acn",
-//   "*.acr",
-//   "*.alg",
-//   "*.glg",
-//   "*.glo",
-//   "*.gls",
-//   "*.ist",
-//   "*.fls",
-//   "*.log",
-//   "*.fdb_latexmk"
-//   ],
-//   }
+// Latex workshop
+"editor.wordWrap": "on",
+"workbench.startupEditor": "newUntitledFile",
+"latex-workshop.latex.autoClean.run": "onBuilt",
+"latex-workshop.hover.command.enabled": true,
+"latex-workshop.latex.clean.fileTypes": [
+    "*.aux",
+    "*.bbl",
+    "*.blg",
+    "*.idx",
+    "*.ind",
+    "*.lof",
+    "*.lot",
+    "*.out",
+    "*.toc",
+    "*.acn",
+    "*.acr",
+    "*.alg",
+    "*.glg",
+    "*.glo",
+    "*.gls",
+    "*.ist",
+    "*.fls",
+    "*.log",
+    "*.fdb_latexmk",
+    // "*.gz"
+],
+"latex-workshop.latex.tools": [
+    {
+        // 编译工具和命令
+        "name": "xelatex",
+        "command": "xelatex",
+        "args": [
+            "-synctex=1",
+            "-interaction=nonstopmode",
+            "-file-line-error",
+            "-pdf",
+            "%DOCFILE%"
+        ]
+    },
+    {
+        "name": "pdflatex",
+        "command": "pdflatex",
+        "args": [
+            "-synctex=1",
+            "-interaction=nonstopmode",
+            "-file-line-error",
+            "%DOCFILE%"
+        ]
+    },
+    {
+        "name": "bibtex",
+        "command": "bibtex",
+        "args": [
+            "%DOCFILE%"
+        ]
+    }
+],
+"latex-workshop.latex.recipes": [
+    {
+        "name": "xelatex",
+        "tools": [
+            "xelatex"
+        ],
+    },
+    {
+        "name": "pdflatex",
+        "tools": [
+            "pdflatex"
+        ]
+    },
+    {
+        "name": "xe->bib->xe->xe",
+        "tools": [
+            "xelatex",
+            "bibtex",
+            "xelatex",
+            "xelatex"
+        ]
+    },
+    {
+        "name": "pdf->bib->pdf->pdf",
+        "tools": [
+            "pdflatex",
+            "bibtex",
+            "pdflatex",
+            "pdflatex"
+        ]
+    }
+],
+"latex-workshop.view.pdf.viewer": "tab",
+// "latex-workshop.view.pdf.viewer": "external",
+// "latex-workshop.view.pdf.ref.viewer": "external",
+// "latex-workshop.view.pdf.external.viewer.command": "C:/Users/lenovo/AppData/Local/SumatraPDF/SumatraPDF.exe",
+// "latex-workshop.view.pdf.external.viewer.args": [
+//     "%PDF%"
+// ],
+// "latex-workshop.view.pdf.external.synctex.command": "C:/Users/lenovo/AppData/Local/SumatraPDF/SumatraPDF.exe",
+// "latex-workshop.view.pdf.external.synctex.args": [
+//     "-forward-search",
+//     "%TEX%",
+//     "%LINE%",
+//     "-reuse-instance",
+//     "-inverse-search",
+//     "\"C:/Users/lenovo/AppData/Local/Programs/Microsoft VS Code/Code.exe\" \"C:/Users/lenovo/AppData/Local/Programs/Microsoft VS Code/resources/app/out/cli.js\" -r -g %f:%l",
+//     "%PDF%",
+// ]
