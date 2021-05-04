@@ -31,7 +31,7 @@
 \begin{figure}[H]
     \centering
     \includegraphics[width=130mm]{./figures/image2-2.png}
-    \caption{GitHub 2020 年全球日志时间分布情况\\The global log time distribution of Github in 2020}
+    \caption{GitHub 2020 年全球日志时间分布情况\\Figure 2-1: The global log time distribution of Github in 2020}
 \end{figure}
 
 \par 如果从日志中抽取每个开发者独立的日志在每日不同时间段的分布情况，并通过对开发者进行时区估计后将其移动合并到同一时区，就能够得到开源开发者的典型工作时间分布情况，从而推断出开发者所属时区、地区，或是根据项目成员的协作时间分布，来判断一个项目的国际化程度。
@@ -41,28 +41,27 @@
 
 % //TODO:找参考文献
 \par 另一方面，在不同的项目中，开源开发者们会使用不同的语言，也具有着一定的技术学习路线，即主要使用的语言事件数量产生明显的增、减变化。在开源社区，由个体语言选择产生的变化组成了社区开发语言迭代的趋势，反之，开发语言的流行趋势也影响着开发者的学习路径。根据开源社区中活动频繁、贡献最大的一批用户的学习路径，就可以形成全域开发语言的流行趋势预测，从而为开发者的发展提供参考。
-
-\par 将2020年全域所有活跃开发者使用的语言分布和活跃度 Top 10 万的开发者使用的语言分布情况进行对比，可以看到存在着一定的区别，如表2-1所示。
-
+\newline
 \begin{table}[htbp]\center
-    \begin{tabular}{|c|cc|c|cc}
+    \caption{GitHub 2020 年全域活跃开发者和 Top10 万活跃开发者语言分布对比\\ Table 2-1:  Comparison of the language distribution of GitHub's global active developers and the top 100,000 active developers in 2020}
+    \begin{tabular}{|c|cc|cc|}
         \hline
-        排名 & 全域开发者语言榜 & 开发者账号数 & 排名 & Top 10W 万开发者语言榜 & 开发者账号数\\
+        排名 & 全域开发者语言榜 & \makecell*[c]{全域范围\\开发者账号数} & \makecell*[c]{Top 10万开发者语言榜} &\makecell*[c]{Top 10万范围\\开发者账号数}\\
         \hline
-        1 & JavaScript & 305,814 & 1 & JavaScript & 15,858 \\
-        2 & Python & 175,610 & 2 & Python & 10,866 \\
-        3 & HTML & 159,303 & 3 & TypeScript & 7,419 \\
-        4 & Java & 139,673 & 4 & Java & 6,665 \\
-        5 & Ruby & 87,780 & 5 & Go & 5,094 \\
-        6 & TypeScript & 85,116 & 6 & C++ & 4，204 \\
-        7 & C\# & 54,343 & 7 & Ruby & 3，802 \\
-        8 & PHP & 52,915 & 8 & HTML & 3,490 \\
-        9 & C++ & 47,799 & 9 & PHP & 3,000 \\
-        10 & CSS & 46,428 & 10 & C\# & 2,892 \\
+        1 & JavaScript & 305,814 & JavaScript & 15,858 \\
+        2 & Python & 175,610 & Python & 10,866 \\
+        3 & HTML & 159,303 & TypeScript & 7,419 \\
+        4 & Java & 139,673 & Java & 6,665 \\
+        5 & Ruby & 87,780 & Go & 5,094 \\
+        6 & TypeScript & 85,116 & C++ & 4,204 \\
+        7 & C\# & 54,343 & Ruby & 3,802 \\
+        8 & PHP & 52,915 & HTML & 3,490 \\
+        9 & C++ & 47,799 & PHP & 3,000 \\
+        10 & CSS & 46,428 & C\# & 2,892 \\
         \hline
     \end{tabular}
-    \caption{GitHub 2020 年全域活跃开发者和 Top10 万活跃开发者语言分布对比\\ Comparison of the language distribution of GitHub's global active developers and the top 100,000 active developers in 2020}
 \end{table}
+\par 将2020年全域所有活跃开发者使用的语言分布和活跃度 Top 10 万的开发者使用的语言分布情况进行对比，可以看到存在着一定的区别，如表2-1所示。
 
 % //TODO:找参考文献
 \par 除了个体之间的差异，不同的开发者之间也存在着协作关系。在某一开源项目中，来自不同开发者的贡献使他们构成协作网络。同一位开发者又有可能参与了多个项目，于是项目与项目之间也具有了关联性。综上两个方面考虑，优秀的开发者对项目具有着影响力，同时优秀项目更容易聚集优秀的开发者，这两者之间相互具有作用力。这样的关系可以用协作网络来进行可视化描述，通过项目协作关联度和社区发现算法对项目进行聚类，从而得到基于协作行为的聚类效果，并用于项目的大致分类。

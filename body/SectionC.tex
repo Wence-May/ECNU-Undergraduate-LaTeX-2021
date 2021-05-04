@@ -67,7 +67,7 @@ UTC 即协调世界时间，是国际通用的时间标准，将全球各地的�
         \item[2）] 因为夏令时，即天亮早的夏季人为将时间调快一小时。比如新西兰是 UTC+12，在夏时制改用 UTC+13。
     \end{enumerate}
 北京时间是中国采用国际时区东八时区的区时作为标准时间，东八区（UTC+8）是比 UTC 早 8 小时的时区。
-}。考虑开发者一天连续 12 个小时产生日志数最多的最后一个小时，其最后一小时（即本地时间 21 时）对应的 UTC 时间记为数学公式: $ k $, 则时区计算公式如下：
+}。考虑开发者一天连续 12 个小时产生日志数最多的最后一个小时，其最后一小时（即本地时间 21 时）对应的 UTC 时间记为 $ k $, 则时区计算公式如下：
 $$
     zone=
     \begin{cases}
@@ -160,7 +160,7 @@ $$ R_{ab}=\sum_{i}{\frac{A_{ia}A_{ib}}{A_{ia}+A_{ib}}} $$
 \begin{figure}[H]
     \centering
     \includegraphics[width=130mm]{./figures/image2-1.png}
-    \caption{开发者活跃度与活跃仓库数量分布图\\Distribution diagram of developer activity and the number of active warehouses}
+    \caption{开发者活跃度与活跃仓库数量分布图\\Figure 3-2: Distribution diagram of developer activity and the number of active warehouses}
 \end{figure}
 
 \par 图2-1使用双对数坐标系绘制，图上方的横坐标表示开发者活跃度，图下方横坐标表示开发者参与项目数量，纵坐标表示开发者数量，所谓双对数坐标，就是将原来的线性坐标轴都取自然对数，可以看到开发者活跃度与活跃仓库数量的分布符合幂律分布。经统计，活跃度超过 2,000 的开发者数量为 5,445 个，占全域开发者数量不足万分之六。而大部分开发者活跃度都在 [0, 500] 区间内，占全域开发者数量的 99.45\%，说明大多数开发者还是处于低活跃度的一个状态。观察曲线尾部，我们发现开发者活跃仓库数量在最后有一个回升，其实是由于部分未被过滤掉的自动化协作类账号的活跃仓库数量巨大，远超正常人类开发者，因此尾部形成V形曲线。
@@ -172,6 +172,8 @@ $$ R_{ab}=\sum_{i}{\frac{A_{ia}A_{ib}}{A_{ia}+A_{ib}}} $$
 \subsubsection{个人发展}
 % 语言使用分布；
 % ​个人关注点（issue label讨论词云图）；
+
+
 
 \subsubsection{协作关系}
 % 开发者协作网络；
