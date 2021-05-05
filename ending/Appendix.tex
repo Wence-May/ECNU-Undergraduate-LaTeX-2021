@@ -1,9 +1,183 @@
-% \section*{\centerline{\bfseries \sffamily \zihao{-3} 附录}}
+\section*{\centerline{\bfseries \sffamily \zihao{-3} 附录}}
 
-% \subsection{实验数据}
+\subsection{部分代码}
+\begin{itemize}
+\item 定义PercepterBase类做一些简单的工作如logger、场景判断。
+\end{itemize}
+\begin{lstlisting}
+export default abstract class PerceptorBase {
+    public logger: any;
 
-% 123
+    constructor() {
+    this.logger = {
+        info: (message?: any, ...optionalParams: any[]): 
+        void => {
+        if (process.env.NODE_ENV !== 'production') {
+            console.log('ℹ️ Perceptor : ',
+             message, ...optionalParams);
+        }
+        },
+        error: (message?: any, ...optionalParams: any[]): 
+        void => {
+        console.error('❌ Error Message From Perceptor :',
+         message, ...optionalParams);
+        // TODO: pass error message to ErrorMessageBar component
+        render(<ErrorMessageBar />, 
+        document.getElementById('perceptor'))
+        }
+    };
+    }
 
-% \subsection{调查结果}
+    public abstract run(): Promise<void>;
+}
+\end{lstlisting}
 
-% 123
+\begin{itemize}
+\item 定义Perceptor类继承PerceptorBase，来检查settings、创建div、取配置文件、渲染每一个组件。
+\end{itemize}
+\begin{lstlisting}
+export class Perceptor extends PerceptorBase {
+    public static Features: Map<string, any> = new Map();
+    public settings: any;
+
+    public async run(): Promise<void> {
+    // wait until <body> element is ready
+    await elementReady('body', { waitForChildren: false });
+    this.logger.info('body element is ready.');
+
+    this.logger.info('creating perceptor div ...');
+    const perceptorDiv = document.createElement('div');
+    perceptorDiv.id = 'perceptor';
+    $('#js-repo-pjax-container').prepend(perceptorDiv);
+
+    await this.checkSettings();
+
+    // run every features
+    Perceptor.Features.forEach(async (Feature, name) => {
+        const featureId = name.replace(name[0],
+        name[0].toLowerCase());
+        this.logger.info('trying to load ', featureId)
+        if (this.settings.toJson()[featureId] === false) {
+        this.logger.info(featureId, 'is disabled');
+        return;
+        }
+        if (Feature.prototype.include
+        .every((c: () => any) => !c())) {
+        this.logger.info(featureId,
+         'does NOT run on this page')
+        return;
+        }
+        try {
+        this.logger.info('running ', featureId)
+        const feature = new Feature();
+        await feature.run();
+        } catch (error: unknown) {
+        this.logger.error(featureId, error)
+        }
+    }, this)
+
+    private async checkSettings(): Promise<void> {
+        this.logger.info('loading settings ...');
+        if (isRepo()) {
+            this.logger.info('Detected that this is a repo page,
+             trying to load configuration file from the repo ...');
+
+            const owner = utils.getRepositoryInfo(window.location)!
+            .owner;
+            const repo = utils.getRepositoryInfo(window.location)!
+            .name;
+            const configFromGithub = await getConfigFromGithub(owner, repo);
+            this.logger.info('The configurations are: ', configFromGithub);
+            this.settings = await mergeSettings(configFromGithub);
+        } else {
+            this.settings = await loadSettings();
+        }
+    }
+}
+\end{lstlisting}
+\begin{itemize}
+    \item 渲染组件，以开发者协作网络为例：
+\end{itemize}
+\begin{lstlisting}
+public async run(): Promise<void> {
+    const pinnedReposDiv = $('.js-pinned-items-reorder-container')
+    .parent();
+    const DeveloperNetworkDiv = document.createElement('div');
+    DeveloperNetworkDiv.id = 'developer-network';
+    DeveloperNetworkDiv.style.width = "100%";
+    this._currentDeveloper = $('.p-nickname.vcard-username.d-block')
+    .text().trim();
+    const settings=await loadSettings();
+    try {
+    const forceGraphDataRaw = await getGraphData(`/actor/${this._currentDeveloper}.json`);
+    await this.generateForceGraphData(forceGraphDataRaw);
+
+    const circularGraphDataRaw = await getGraphData(
+        `/actor/${this._currentDeveloper}_top.json`);
+    await this.generateCircularGraphData(circularGraphDataRaw);
+
+    const developerColumns = [
+        {
+        key: 'column1',
+        name: getMessageI18n('global_developer'),
+        fieldName: 'name',
+        minWidth: 100,
+        maxWidth: 200,
+        isResizable: true,
+        onRender: (item: any) => (
+            <Link href={'https://github.com/' + item.name} >
+            {item.name}
+            </Link>
+        ),
+        },
+        { key: 'column2', name: getMessageI18n('global_correlation'), fieldName: 'correlation', minWidth: 100, maxWidth: 200, isResizable: true },
+        { key: 'column3', name: getMessageI18n('global_activity'), fieldName: 'activity', minWidth: 100, maxWidth: 200, isResizable: true },
+    ];
+    const repoColumns = [
+        {
+        key: 'column1',
+        name: getMessageI18n('global_repo'),
+        fieldName: 'name',
+        minWidth: 100,
+        maxWidth: 200,
+        isResizable: true,
+        onRender: (item: any) => (
+            <Link href={'https://github.com/' + item.name} >
+            {item.name}
+            </Link>
+        ),
+        },
+        { key: 'column2', name:
+         getMessageI18n('global_contribution'), fieldName: 'value', minWidth: 100, maxWidth: 200, isResizable: true },
+    ];
+    render(
+        <div>
+        < GraphWithList
+            layout='force'
+            graphType={settings.graphType}
+            title={getMessageI18n('component_developerCollabrationNetwork_title')}
+            graphData={this._forceGraphData}
+            graphDataGraphin={this._forceGraphDataGraphin}
+            columns={developerColumns}
+            listData={this._developerListData}
+        />
+        < GraphWithList
+            layout='circular'
+            graphType={settings.graphType}
+            title={getMessageI18n('component_mostParticipatedProjects_title')}
+            graphData={this._circularGraphData}
+            graphDataGraphin={this._circularGraphDataGraphin}
+            columns={repoColumns}
+            listData={this._repoListData}
+        />
+        </div>,
+        DeveloperNetworkDiv,
+    );
+    pinnedReposDiv.before(DeveloperNetworkDiv);
+    } catch (error) {
+    this.logger.error('DeveloperNetwork', error);
+    return;
+    }
+}
+\end{lstlisting}
+
