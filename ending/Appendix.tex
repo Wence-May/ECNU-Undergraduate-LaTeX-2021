@@ -4,6 +4,7 @@
 \begin{itemize}
 \item 定义PercepterBase类做一些简单的工作如logger、场景判断。
 \end{itemize}
+\lstset{breaklines=true}
 \begin{lstlisting}
 export default abstract class PerceptorBase {
     public logger: any;
@@ -13,13 +14,13 @@ export default abstract class PerceptorBase {
         info: (message?: any, ...optionalParams: any[]): 
         void => {
         if (process.env.NODE_ENV !== 'production') {
-            console.log('ℹ️ Perceptor : ',
+            console.log('Perceptor : ',
              message, ...optionalParams);
         }
         },
         error: (message?: any, ...optionalParams: any[]): 
         void => {
-        console.error('❌ Error Message From Perceptor :',
+        console.error('Error Message From Perceptor :',
          message, ...optionalParams);
         // TODO: pass error message to ErrorMessageBar component
         render(<ErrorMessageBar />, 

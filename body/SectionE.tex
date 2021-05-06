@@ -48,10 +48,137 @@
 % Jest
 \par 项目使用Jest，一个简洁的测试框架，它能够很好地与Typescript以及React框架共用。Jest在大部分基于JavaScript的项目上可以实现开箱即用、无需配置，且具有优秀的 api，易于书写与维护。
 % //TODO: 测试了哪些功能点
+\par 本文对跨平台交互、跨平台消息实时通知、身份认证与权限管理、数字化看板功能分别进行了测试，测试情况总结如表5-1至5-4。
 
+\begin{table}[htbp]\center
+    \caption{功能测试:跨平台交互\\ Table 5-1:  Function test: Cross-platform interaction}
+    \begin{tabular}{|c|c|c|}
+        \hline
+        功能描述 & \multicolumn{2}{|c|}{跨平台消息实时通知}\\
+        \hline
+        用例目的 & \multicolumn{2}{|c|}{是否能够跨平台交互}\\
+        \hline
+        前提条件 & \multicolumn{2}{|c|}{插件正常运行}\\
+        \hline
+        输入/动作 & 期望的输出/响应 & 实际情况\\
+        \hline
+        输入 /help 指令 & 显示支持的所有指令 & 符合 \\
+        \hline
+        输入/sendMsg slack hello 指令 & 在slack中显示hello消息 & 符合 \\
+        \hline
+        输入错误用户信息以及密码登录 &提示输入信息错误 & 符合 \\
+        \hline
+    \end{tabular}
+\end{table}
+\begin{table}[htbp]\center
+    \caption{功能测试:跨平台消息实时通知\\ Table 5-2:  Function test: Real-time notification of cross-platform messages}
+    \begin{tabular}{|c|c|c|}
+        \hline
+        功能描述 & \multicolumn{2}{|c|}{跨平台消息实时通知}\\
+        \hline
+        用例目的 & \multicolumn{2}{|c|}{是否能够跨平台消息实时通知}\\
+        \hline
+        前提条件 & \multicolumn{2}{|c|}{系统正常运行}\\
+        \hline
+        输入/动作 & 期望的输出/响应 & 实际情况\\
+        \hline
+        给所有用户发送“插件有更新版本”通知 & 用户收到实时消息通知 & 符合 \\
+        \hline
+        给项目contributor发送项目周报 & contributor收到周报消息通知 & 符合 \\
+        \hline
+        给用户发送“项目有新的release”通知 & 用户收到release通知 & 符合 \\
+        \hline
+    \end{tabular}
+\end{table}
+\begin{table}[htbp]\center
+    \caption{功能测试:身份认证与权限管理\\ Table 5-3:  Function test: Identity authentication and authority management}
+    \begin{tabular}{|c|c|c|}
+        \hline
+        功能描述 & \multicolumn{2}{|c|}{身份认证与权限管理}\\
+        \hline
+        用例目的 & \multicolumn{2}{|c|}{是否能够正确地进行身份认证与权限管理}\\
+        \hline
+        前提条件 & \multicolumn{2}{|c|}{系统正常运行}\\
+        \hline
+        输入/动作 & 期望的输出/响应 & 实际情况\\
+        \hline
+        授权绑定Github/GitLab/Gitee账户 & 绑定成功，显示用户名和头像 & 符合 \\
+        \hline
+        输入Github/GitLab/Gitee Token & 保存成功 & 符合 \\
+        \hline
+        授权绑定Slack账户 & 绑定成功，显示用户名和头像 & 符合 \\
+        \hline
+    \end{tabular}
+\end{table}
+\begin{table}[htbp]\center
+    \caption{功能测试:数字化看板\\ Table 5-4:  Function test: visualization}
+    \begin{tabular}{|c|c|c|}
+        \hline
+        功能描述 & \multicolumn{2}{|c|}{数字化看板}\\
+        \hline
+        用例目的 & \multicolumn{2}{|c|}{是否能够正确显示各个数字化看板}\\
+        \hline
+        前提条件 & \multicolumn{2}{|c|}{系统正常运行}\\
+        \hline
+        输入/动作 & 期望的输出/响应 & 实际情况\\
+        \hline
+        查看开发者协作网络 &正确显示 & 符合 \\
+        \hline
+        查看开发者活跃度折线图& 正确显示 & 符合 \\
+        \hline
+        查看开发者事件雷达图 & 正确显示 & 符合 \\
+        \hline
+        查看开发者语言分布 & 正确显示 & 符合 \\
+        \hline
+        查看项目关联网络 & 正确显示 & 符合 \\
+        \hline
+        查看项目活跃度折线图 & 正确显示 & 符合 \\
+        \hline
+        查看项目中打开/关闭的issue双向柱状图 & 正确显示 & 符合 \\
+        \hline
+        查看项目中代码行数变化双向柱状图 & 正确显示 & 符合 \\
+        \hline
+        查看项目一周commit、star、fork曲线 & 正确显示   & 符合 \\
+        \hline
+        查看项目issue平均响应时间 & 正确显示 & 符合 \\
+        \hline
+        查看项目参与者时区分布 & 正确显示 & 符合 \\
+        \hline
+        查看项目的工作时间分布 & 正确显示 & 符合 \\
+        \hline
+        查看项目PR平均解决周期 & 正确显示 & 符合 \\
+        \hline
+        查看社区组织开源象限图 & 正确显示& 符合 \\
+        \hline
+        
+    \end{tabular}
+\end{table}
 
-% //TODO: 最后要不要放效果图？-先不放上去，准备着
-% \subsection{实现结果}
+\subsection{实现效果}
 % 项目、个人Github主页最终效果（贴图）
 
+\par 以开发者协作关系为例，若用户关注并在配置项中开启了协作关系的组件选项，他将能在浏览Github各项目与开发者主页时，看到如下图5-2与图5-3的效果：
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=130mm]{./figures/成果展示.png}
+    \caption{Github平台上项目主页的协作关系网络可视化效果\\Figure 5-2: Visualization of the collaborative relationship network of the project homepage on the Github platform}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=130mm]{./figures/个人主页.png}
+    \caption{Github平台上开发者主页的协作关系网络可视化效果\\Figure 5-3: Visualization of the collaborative relationship network of the developer's homepage on the Github platform}
+\end{figure}
 
+% \begin{figure}[htbp]
+%     \centering
+%     \begin{minipage}[t]{0.48\textwidth}
+%         \centering
+%         \includegraphics[align=c,width=6cm]{./figures/成果展示.png}
+%         \caption{Github平台上项目主页的协作关系网络可视化效果\\Figure 5-2: Visualization of the collaborative relationship network of the project homepage on the Github platform}
+%     \end{minipage}
+%     \begin{minipage}[t]{0.48\textwidth}
+%         \centering
+%         \includegraphics[align=c,width=6cm]{./figures/个人主页.png}
+%         \caption{Github平台上开发者主页的协作关系网络可视化效果\\Figure 5-3: Visualization of the collaborative relationship network of the developer's homepage on the Github platform}
+%     \end{minipage}
+% \end{figure}
